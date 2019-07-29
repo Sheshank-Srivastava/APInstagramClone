@@ -2,5 +2,5 @@
     <string name="app_name">APInstagramClone</string>
     <string name="YOUR_APP_ID">WRKFdsfPoVoRQdP4QpyRPjo2x03T0EGilcoHIBxu</string>
     <string name="YOUR_CLIENT_KEY">taYMyGlyDpq8uj8l49CnycP4ZBL8vt7Lx669Jfky</string>
-    <string name="BACKEND_URL">http://localhost:1337/parse/</string>
+    <string name="BACKEND_URL">https://parseapi.back4app.com/</string>
 </resources>
