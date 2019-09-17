@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUp">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the name of the player"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/etPunchSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the punch speed"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etPunchPower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the punch power"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:inputType="number"/>
+
+    <EditText
+        android:id="@+id/etKickSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the kick speed"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etKickPower"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the kick power"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:inputType="number"/>
+    <Button
+        android:id="@+id/butSaveObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save kick boxer to server"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:padding="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text="Get Data From the Server"
+        android:textColor="#FF00C8"
+        android:textSize="22dp" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Hello World"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="30sp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:onClick="helloWorldTrapped"/>-->
+</LinearLayout>
