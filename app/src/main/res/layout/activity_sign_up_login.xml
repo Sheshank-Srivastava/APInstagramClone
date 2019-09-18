@@ -1,15 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SignUpLoginActivity">
+    android:orientation="vertical"
+    tools:context=".activity.SignUpLoginActivity"
+    android:layout_margin="5dp">
 
-    <TextView
+    <EditText
+        android:id="@+id/etSignUpUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter UserName"
+        android:layout_margin="5dp"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/etSignUpPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/butSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Transition Activity"
-        android:textSize="30dp" />
-</RelativeLayout>
+        android:text="Sign Up User"
+        android:layout_gravity="center_horizontal"/>
+
+
+    <EditText
+        android:id="@+id/etLogInUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter UserName"
+        android:layout_margin="5dp"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/etLogInPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/butLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log In User"
+        android:layout_gravity="center_horizontal"/>
+
+
+
+</LinearLayout>
