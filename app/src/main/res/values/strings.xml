@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">APInstagramClone</string>
+    <!--    Credential for Back4App server-->
     <string name="YOUR_APP_ID">WRKFdsfPoVoRQdP4QpyRPjo2x03T0EGilcoHIBxu</string>
     <string name="YOUR_CLIENT_KEY">taYMyGlyDpq8uj8l49CnycP4ZBL8vt7Lx669Jfky</string>
     <string name="BACKEND_URL">https://parseapi.back4app.com/</string>
+    <!--    Text for the App-->
+    <string name="enter_email">Please enter email...</string>
+    <string name="enter_username">Please enter username...</string>
+    <string name="enter_password">Please enter password...</string>
+    <string name="sign_up">sign up</string>
+    <string name="log_in">log in</string>
 </resources>

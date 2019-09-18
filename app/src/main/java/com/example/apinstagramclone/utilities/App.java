@@ -1,8 +1,9 @@
-package com.example.apinstagramclone;
+package com.example.apinstagramclone.utilities;
 
 
 import android.app.Application;
 
+import com.example.apinstagramclone.R;
 import com.parse.Parse;
 
 public class App extends Application {
