@@ -10,13 +10,13 @@
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:src="@drawable/insta_logo"
+        android:src="@drawable/instagram_logo"
         android:layout_marginTop="25dp"
         android:layout_gravity="center_horizontal"/>
     <EditText
         android:id="@+id/etEmailSignUp"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:hint="@string/enter_email"
@@ -26,7 +26,7 @@
     <EditText
         android:id="@+id/etUserNameSignUp"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:hint="@string/enter_username"
@@ -37,7 +37,7 @@
     <EditText
         android:id="@+id/etPasswordSignUp"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:hint="@string/enter_password"
@@ -46,7 +46,7 @@
         android:layout_marginTop="10dp"/>
 
     <Button
-        android:id="@+id/btnSignUp_SignUpActivity"
+        android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
@@ -58,7 +58,7 @@
         />
 
     <Button
-        android:id="@+id/btnLogIn_SignUpActivity"
+        android:id="@+id/btnLogIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/log_in"
