@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -72,7 +73,8 @@ public class LoginActivity extends AppCompatActivity
                                     Toast.makeText(LoginActivity.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-                                Toast.makeText(LoginActivity.this, et_Email.getText().toString()+" is logged in.", Toast.LENGTH_SHORT).show();
+                                transitionToSocialMediaactivity();
+//                                Toast.makeText(LoginActivity.this, et_Email.getText().toString()+" is logged in.", Toast.LENGTH_SHORT).show();
                             }
                         });
                 break;
@@ -91,5 +93,10 @@ public class LoginActivity extends AppCompatActivity
             default:
 
         }
+    }
+
+    private void transitionToSocialMediaactivity() {
+        Intent intent = new Intent(LoginActivity.this, SocialMediaActivity.class);
+        startActivity(intent);
     }
 }

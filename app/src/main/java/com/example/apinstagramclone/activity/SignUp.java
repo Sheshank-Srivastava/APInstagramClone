@@ -60,7 +60,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         });
 
         if (ParseUser.getCurrentUser() != null) {
-            ParseUser.getCurrentUser().logOut();
+//            ParseUser.getCurrentUser().logOut();
+            transitionToSocialMediaactivity();
         }
 
     }
@@ -89,6 +90,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void done(ParseException e) {
                         if (e == null) {
+                            transitionToSocialMediaactivity();
                             Toast.makeText(SignUp.this, appUser.getUsername() + " is signed up.", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(SignUp.this, "There is an error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -108,10 +110,15 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
         }
+    }
+
+    private void transitionToSocialMediaactivity() {
+        Intent intent = new Intent(SignUp.this, SocialMediaActivity.class);
+        startActivity(intent);
     }
 }
