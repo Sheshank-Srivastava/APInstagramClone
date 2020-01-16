@@ -1,33 +1,37 @@
 package com.example.apinstagramclone.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.apinstagramclone.R;
-import com.parse.ParseUser;
+import com.example.apinstagramclone.adapter.TabAdapter;
+import com.google.android.material.tabs.TabLayout;
 
-public class SocialMediaActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btn_logout;
+public class SocialMediaActivity extends AppCompatActivity {
+
+    Toolbar toolbar;
+    ViewPager viewPager;
+    TabLayout tablayout;
+    TabAdapter tabAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social_media);
-        getSupportActionBar().setTitle("Social Media Activity");
-        btn_logout =  findViewById(R.id.btn_logout);
-        btn_logout.setOnClickListener(this);
+        setTitle("Social Media App!!!");
+
+        toolbar =  findViewById(R.id.myToolbar);
+        setSupportActionBar(toolbar);
+        viewPager =  findViewById(R.id.viewPager);
+        tablayout = findViewById(R.id.myTablayout);
+        tabAdapter =  new TabAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(tabAdapter);
+        tablayout.setupWithViewPager(viewPager,false);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_logout:
-                ParseUser.getCurrentUser().logOut();
-                startActivity(new Intent(SocialMediaActivity.this,SignUp.class));
-            break;
-        }
-    }
+
 }
