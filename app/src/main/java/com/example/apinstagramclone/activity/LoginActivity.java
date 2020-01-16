@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.apinstagramclone.R;
@@ -20,24 +22,30 @@ public class LoginActivity extends AppCompatActivity
                             implements View.OnClickListener{
     Button btn_Login,btn_SignUp;
     EditText et_Email,et_Password;
+
+    LinearLayout linear_loginRoot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().setTitle("LogIn");
+
         btn_Login = findViewById(R.id.btnLogIn_LogInActivity);
         btn_SignUp = findViewById(R.id.btnSignUp_LogInActivity);
+
+        linear_loginRoot =  findViewById(R.id.linear_loginRoot);
 
         et_Email = findViewById(R.id.etEmailLogIn);
         et_Password = findViewById(R.id.etPasswordLogIn);
 
         btn_Login.setOnClickListener(this);
         btn_SignUp.setOnClickListener(this);
-
+        linear_loginRoot.setOnClickListener(this);
         et_Password.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode == EditorInfo.IME_ACTION_DONE && event.getAction()== KeyEvent.ACTION_DOWN){
+                if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction()== KeyEvent.ACTION_DOWN){
                     onClick(btn_Login);
                 }
                 return false;
@@ -51,7 +59,11 @@ public class LoginActivity extends AppCompatActivity
         switch(v.getId()){
 
             case R.id.btnLogIn_LogInActivity:
-
+                if (et_Email.getText().toString().equals("")||
+                        et_Password.getText().toString().equals("")){
+                    Toast.makeText(this, "Email ID and Password are reqired.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 ParseUser.logInInBackground(et_Email.getText().toString(),
                         et_Password.getText().toString(), new LogInCallback() {
                             @Override
@@ -60,7 +72,6 @@ public class LoginActivity extends AppCompatActivity
                                     Toast.makeText(LoginActivity.this, "Wrong Credentials", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
-
                                 Toast.makeText(LoginActivity.this, et_Email.getText().toString()+" is logged in.", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -68,6 +79,14 @@ public class LoginActivity extends AppCompatActivity
             case R.id.btnSignUp_LogInActivity:
                 startActivity(new Intent(LoginActivity.this,SignUp.class));
                 finish();
+                break;
+            case R.id.linear_loginRoot:
+                try {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 break;
             default:
 
