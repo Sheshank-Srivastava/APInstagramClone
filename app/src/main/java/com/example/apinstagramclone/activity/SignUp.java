@@ -1,6 +1,9 @@
 package com.example.apinstagramclone.activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,13 +30,24 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         et_UserName = findViewById(R.id.etUserNameSignUp);
         et_Password = findViewById(R.id.etPasswordSignUp);
 
+        et_Password.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent event) {
+                if(keyCode ==  KeyEvent.KEYCODE_ENTER
+                        && event.getAction() == KeyEvent.ACTION_DOWN){
+                    onClick(btn_SignUp);
+                }
+                return false;
+            }
+        });
+
         btn_SignUp = findViewById(R.id.btnSignUp);
         btn_LogIn = findViewById(R.id.btnLogIn);
 
         btn_SignUp.setOnClickListener(this);
         btn_LogIn.setOnClickListener(this);
 
-        if(ParseUser.getCurrentUser()!=null){
+        if (ParseUser.getCurrentUser() != null) {
             ParseUser.getCurrentUser().logOut();
         }
 
@@ -43,10 +57,20 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnSignUp:
+                if (et_Email.getText().toString().equals("")
+                        || et_UserName.getText().toString().equals("")
+                        || et_Password.getText().toString().equals("")) {
+                    Toast.makeText(this, "Email,UserName,Password is required.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final ParseUser appUser = new ParseUser();
                 appUser.setEmail(et_Email.getText().toString().trim());
                 appUser.setUsername(et_UserName.getText().toString().trim());
                 appUser.setPassword(et_Password.getText().toString().trim());
+
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setMessage("Signing up " + et_UserName.getText().toString().trim());
+                progressDialog.show();
                 appUser.signUpInBackground(new SignUpCallback() {
                     @Override
                     public void done(ParseException e) {
@@ -56,10 +80,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             Toast.makeText(SignUp.this, "There is an error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                         }
+                        progressDialog.dismiss();
                     }
                 });
                 break;
             case R.id.btnLogIn:
+                startActivity(new Intent(SignUp.this, LoginActivity.class));
                 break;
         }
     }
