@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_signupRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -22,6 +23,7 @@
         android:hint="@string/enter_email"
         android:textColorHint="@android:color/white"
         android:layout_gravity="center_horizontal"
+        android:inputType="textEmailAddress"
         android:layout_marginTop="20dp"/>
     <EditText
         android:id="@+id/etUserNameSignUp"
@@ -32,7 +34,8 @@
         android:hint="@string/enter_username"
         android:textColorHint="@android:color/white"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/etPasswordSignUp"

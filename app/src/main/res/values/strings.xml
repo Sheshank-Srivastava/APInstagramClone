@@ -10,4 +10,15 @@
     <string name="enter_password">Please enter password</string>
     <string name="sign_up">sign up</string>
     <string name="log_in">log in</string>
+    <string name="logout">Logout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="enter_name">Please enter a profile name</string>
+    <string name="enter_bio">Please enter your bio</string>
+    <string name="enter_profess">Please enter your profession</string>
+    <string name="enter_hobbies">Please enter your hobbies</string>
+    <string name="enter_sport">Please enter your favorite sport</string>
+    <string name="update_info">Update info</string>
 </resources>
