@@ -23,8 +23,8 @@ import com.parse.SaveCallback;
  */
 public class ProfileTabFragment extends Fragment {
 
-    EditText et_profileName, et_profileBio, et_profileProfess, et_profileHobbies, et_profileSport;
-    Button btn_updateInfo;
+    private EditText et_profileName, et_profileBio, et_profileProfess, et_profileHobbies, et_profileSport;
+    private Button btn_updateInfo;
 
     public ProfileTabFragment() {
         // Required empty public constructor
@@ -45,7 +45,8 @@ public class ProfileTabFragment extends Fragment {
         btn_updateInfo = view.findViewById(R.id.btn_updateInfo);
 
         final ParseUser parseUser = ParseUser.getCurrentUser();
-        et_profileName.setText(parseUser.get("profileName") != null ? parseUser.get("profileName").toString() : "");
+
+        et_profileName.setText((parseUser.get("profileName") != null) ? parseUser.get("profileName").toString() : "");
         et_profileBio.setText(parseUser.get("profileBio") != null ? parseUser.get("profileBio").toString() : "");
         et_profileProfess.setText(parseUser.get("profileProfess") != null ? parseUser.get("profileProfess").toString() : "");
         et_profileHobbies.setText(parseUser.get("profileHobbies") != null ? parseUser.get("profileHobbies").toString() : "");
