@@ -1,7 +1,10 @@
 package com.example.apinstagramclone.activity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -31,6 +34,7 @@ public class SocialMediaActivity extends AppCompatActivity {
         viewPager.setAdapter(tabAdapter);
         tablayout.setupWithViewPager(viewPager,false);
     }
+
 
 
 }
