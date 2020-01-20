@@ -62,7 +62,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         if (ParseUser.getCurrentUser() != null) {
 
-//            ParseUser.getCurrentUser().logOut();
             transitionToSocialMediaactivity();
         }
 
