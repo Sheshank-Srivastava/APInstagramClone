@@ -19,13 +19,12 @@
         android:id="@+id/txt_LoadingMessege"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:text="@string/user_load_messege"
         android:textSize="24sp"
-        android:background="@color/colorPrimary"
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

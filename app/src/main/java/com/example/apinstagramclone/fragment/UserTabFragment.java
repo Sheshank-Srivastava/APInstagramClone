@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class UserTabFragment extends Fragment {
     private LinearLayoutManager mLayoutManager;
     private List<String> mUserList;
     private TextView txtLoadingMessege;
+    private ParseQuery<ParseUser> mParseQuery;
 
     public UserTabFragment() {
         // Required empty public constructor
@@ -45,31 +47,33 @@ public class UserTabFragment extends Fragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       Log.i(UserTabFragment.class.getSimpleName(),"OnCreate");
+        Log.i(UserTabFragment.class.getSimpleName(), "OnCreate");
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_user_tab, container, false);
-         recyclerUserList = view.findViewById(R.id.recycler_userList);
+        recyclerUserList = view.findViewById(R.id.recycler_userList);
         txtLoadingMessege = view.findViewById(R.id.txt_LoadingMessege);
         txtLoadingMessege.setVisibility(View.VISIBLE);
-        ParseQuery<ParseUser> mParseQuery = ParseUser.getQuery();
+        mParseQuery = ParseUser.getQuery();
         mUserList = new ArrayList<>();
         mParseQuery.whereNotEqualTo("username", ParseUser.getCurrentUser().getUsername());
+
         mParseQuery.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
-                txtLoadingMessege.setVisibility(View.GONE);
+//                txtLoadingMessege.setVisibility(View.GONE);
                 recyclerUserList.setVisibility(View.VISIBLE);
                 if (e != null && objects.size() <= 0) return;
-                for (ParseUser mUser : objects){
+                for (ParseUser mUser : objects) {
                     mUserList.add(mUser.getUsername());
                 }
             }
         });
 
+
         mLayoutManager = new LinearLayoutManager(getContext());
         recyclerUserList.setLayoutManager(mLayoutManager);
-        mUserListAdapter =  new UserListAdapter(getContext(),mUserList);
+        mUserListAdapter = new UserListAdapter(getContext(), mUserList);
         recyclerUserList.setAdapter(mUserListAdapter);
-
+        txtLoadingMessege.animate().alpha(0).setDuration(2000);
         return view;
     }
 
