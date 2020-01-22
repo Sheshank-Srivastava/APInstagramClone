@@ -22,4 +22,7 @@
     <string name="enter_sport">Please enter your favorite sport</string>
     <string name="update_info">Update info</string>
     <string name="user_load_messege">Loading Data From Server. Please wait...</string>
+    <string name="hold_image">hold Image</string>
+    <string name="text_image">Please enter a description for your image...</string>
+    <string name="share_image">Share Image</string>
 </resources>
