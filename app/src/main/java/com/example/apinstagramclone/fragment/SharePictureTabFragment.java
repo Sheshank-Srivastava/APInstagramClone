@@ -3,6 +3,7 @@ package com.example.apinstagramclone.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -28,6 +30,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.apinstagramclone.R;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,11 +85,28 @@ public class SharePictureTabFragment extends Fragment implements View.OnClickLis
                 }
                 break;
             case R.id.btnShareImage:
-                if (recivedImageBitmap == null && et_Imagetext.getText().equals("")) {
+                if (recivedImageBitmap == null || et_Imagetext.getText().toString().trim().equals("")) {
                     Toast.makeText(getContext(), "You must select an image.\n OR\n You must specify description", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                recivedImageBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+                byte[] bytes =  byteArrayOutputStream.toByteArray();
+                ParseFile parseFile = new ParseFile("pic.png",bytes);
+                ParseObject parseObject = new ParseObject("Photo");
+                parseObject.put("picture",parseFile);
+                parseObject.put("image_desc",et_Imagetext.getText().toString());
+                parseObject.put("username",ParseUser.getCurrentUser().getUsername());
+                final ProgressDialog mProgressDialog = new ProgressDialog(getContext());
+                mProgressDialog.setMessage("Loading");
+                mProgressDialog.show();
+                mProgressDialog.setCancelable(false);
+                parseObject.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e!= null) return;
+                    }
+                });
                 break;
         }
 
@@ -91,6 +118,7 @@ public class SharePictureTabFragment extends Fragment implements View.OnClickLis
         startActivityForResult(intent, MEDIA_RESULT_CODE);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -98,7 +126,7 @@ public class SharePictureTabFragment extends Fragment implements View.OnClickLis
             try {
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                Cursor cursor = Objects.requireNonNull(getActivity()).getContentResolver().query(selectedImage, filePathColumn, null, null, null);
                 cursor.moveToFirst();
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String picturePath = cursor.getString(columnIndex);
