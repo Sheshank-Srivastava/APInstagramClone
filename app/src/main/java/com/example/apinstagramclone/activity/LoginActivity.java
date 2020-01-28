@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apinstagramclone.R;
+import com.example.apinstagramclone.utilities.Utilities;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -102,4 +103,5 @@ public class LoginActivity extends AppCompatActivity
         startActivity(intent);
         finish();
     }
+
 }
