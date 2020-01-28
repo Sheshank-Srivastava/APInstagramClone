@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_postImage"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="@string/post_image"
+        android:icon="@drawable/ic_camera_item"
+        />
 <item android:id="@+id/menu_logout"
-    android:icon="@drawable/ic_logout"
-    android:title="@string/logout"
+    android:title="@string/logout_menu"
     android:visible="true"
     app:showAsAction="never"/>
 
