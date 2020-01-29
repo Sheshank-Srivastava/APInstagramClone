@@ -95,12 +95,21 @@ public class SocialMediaActivity extends AppCompatActivity {
             captureImage();
     }
 
+    /**
+     * Open's the intent chooser to get the image
+     */
     private void captureImage() {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, MEDIA_REQUEST_CODE);
     }
 
+    /**
+     * This Works when the user selected one image to post
+     * @param requestCode define the user Granted the permission to access the gallery
+     * @param resultCode
+     * @param data has the image that need to push to the server
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
