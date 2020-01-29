@@ -105,6 +105,7 @@ public class SharePictureTabFragment extends Fragment implements View.OnClickLis
                     @Override
                     public void done(ParseException e) {
                         if (e!= null) return;
+                        Toast.makeText(getContext(), "Picture is successfully uploaded.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
