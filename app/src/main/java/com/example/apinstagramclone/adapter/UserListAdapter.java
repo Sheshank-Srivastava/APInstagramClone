@@ -45,6 +45,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
     @Override
     public void onBindViewHolder(@NonNull final UserListItem holder, final int position) {
         holder.txtUserName.setText(mUserList.get(position));
+
+        /**
+         * Function that handles When the user taps the other user card
+         */
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +66,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
                     @Override
                     public void done(ParseUser user, ParseException e) {
                         if (user != null && e == null) {
-//                            Toast.makeText(context, user.get("profileProfess")+"", Toast.LENGTH_SHORT).show();
+                            // Show the Floating Dialog When the user long press to other user card
                             final PrettyDialog prettyDialog = new PrettyDialog(context);
                             prettyDialog.setTitle(user.getUsername() + "'s Info")
                                     .setMessage(user.get("profileBio") + "\n" +
