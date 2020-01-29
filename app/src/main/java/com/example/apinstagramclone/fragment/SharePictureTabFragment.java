@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.apinstagramclone.R;
 import com.parse.ParseException;
@@ -104,8 +105,14 @@ public class SharePictureTabFragment extends Fragment implements View.OnClickLis
                 parseObject.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
-                        if (e!= null) return;
-                        Toast.makeText(getContext(), "Picture is successfully uploaded.", Toast.LENGTH_SHORT).show();
+
+                        mProgressDialog.dismiss();
+                        if (e!= null){
+                            Toast.makeText(getContext(), "Unknown error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        Toast.makeText(getContext(), "Done!!!", Toast.LENGTH_SHORT).show();
+
                     }
                 });
                 break;

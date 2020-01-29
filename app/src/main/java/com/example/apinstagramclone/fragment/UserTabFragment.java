@@ -1,6 +1,7 @@
 package com.example.apinstagramclone.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.apinstagramclone.R;
+import com.example.apinstagramclone.activity.UsersPosts;
 import com.example.apinstagramclone.adapter.UserListAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -71,7 +73,14 @@ public class UserTabFragment extends Fragment {
 
         mLayoutManager = new LinearLayoutManager(getContext());
         recyclerUserList.setLayoutManager(mLayoutManager);
-        mUserListAdapter = new UserListAdapter(getContext(), mUserList);
+        mUserListAdapter = new UserListAdapter(getContext(), mUserList, new UserListAdapter.ItemClickListener() {
+            @Override
+            public void onItemClicked(View v,int position) {
+                Intent intent =  new Intent(getActivity(), UsersPosts.class);
+                intent.putExtra("username",mUserList.get(position));
+                startActivity(intent);
+            }
+        });
         recyclerUserList.setAdapter(mUserListAdapter);
         txtLoadingMessege.animate().alpha(0).setDuration(2000);
         return view;
