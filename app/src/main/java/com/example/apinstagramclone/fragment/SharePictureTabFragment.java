@@ -105,6 +105,7 @@ public class SharePictureTabFragment extends Fragment implements View.OnClickLis
                 parseObject.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
+
                         mProgressDialog.dismiss();
                         if (e!= null){
                             Toast.makeText(getContext(), "Unknown error: " + e.getMessage(), Toast.LENGTH_SHORT).show();

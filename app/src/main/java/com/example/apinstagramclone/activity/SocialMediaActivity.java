@@ -91,7 +91,7 @@ public class SocialMediaActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode ==STORAGE_REQUEST_CODE &&(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED))
+        if (requestCode == STORAGE_REQUEST_CODE && (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED))
             captureImage();
     }
 
@@ -104,19 +104,19 @@ public class SocialMediaActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == MEDIA_REQUEST_CODE && resultCode == RESULT_OK && data !=null){
+        if (requestCode == MEDIA_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             try {
-               Uri capturedImage = data.getData();
-               Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),
-                       capturedImage);
-                ByteArrayOutputStream byteArrayOutputStream =  new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+                Uri capturedImage = data.getData();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(),
+                        capturedImage);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                 byte[] bytes = byteArrayOutputStream.toByteArray();
 
-                ParseFile parseFile = new ParseFile("img.png",bytes);
+                ParseFile parseFile = new ParseFile("img.png", bytes);
                 ParseObject parseObject = new ParseObject("Photo");
-                parseObject.put("picture",parseFile);
-                parseObject.put("username",ParseUser.getCurrentUser().getUsername());
+                parseObject.put("picture", parseFile);
+                parseObject.put("username", ParseUser.getCurrentUser().getUsername());
                 final ProgressDialog mProgressDialog = new ProgressDialog(this);
                 mProgressDialog.setMessage("Loading");
                 mProgressDialog.show();
@@ -125,7 +125,7 @@ public class SocialMediaActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseException e) {
                         mProgressDialog.dismiss();
-                        if (e!= null){
+                        if (e != null) {
                             Toast.makeText(SocialMediaActivity.this, "Unknown error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             return;
                         }
@@ -133,7 +133,7 @@ public class SocialMediaActivity extends AppCompatActivity {
 
                     }
                 });
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
